@@ -11,6 +11,9 @@ import java.util.Date;
 public class CourseSearchResponseDto {
 
     private String title;
+    private String description;
+    private Long courseId;
+    private String thumbnailPath;
     private Tags tags;
     private String userName;
 }

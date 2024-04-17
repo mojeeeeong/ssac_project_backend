@@ -81,9 +81,9 @@ public class CourseListController {
     public ResponseEntity<?> getSearchCourse(@RequestParam("keyword") String keyword) {
         List<Course> searchCourse = courseListService.getSearchCourse(keyword);
 
-        // 각 강의 정보를 CourseSearchResponseDto로 변환하여 리스트에 추가
+        // 각 강의 정보를 CourseSearchInfo로 변환하여 리스트에 추가
         List<CourseSearchResponseDto> responseDtoList = searchCourse.stream()
-                .map(course -> new CourseSearchResponseDto(course.getTitle(), course.getTags(), course.getUser().getUserName()))
+                .map(course -> new CourseSearchResponseDto(course.getTitle(), course.getDescription(), course.getCourseId(), course.getThumbnailPath(),  course.getTags(), course.getUser().getUserName()))
                 .collect(Collectors.toList());
 
         return ResponseEntity.status(HttpStatus.OK).body(new Result(responseDtoList.size(), responseDtoList));

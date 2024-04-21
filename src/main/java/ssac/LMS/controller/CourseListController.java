@@ -89,5 +89,17 @@ public class CourseListController {
         return ResponseEntity.status(HttpStatus.OK).body(new Result(responseDtoList.size(), responseDtoList));
     }
 
+    @GetMapping("/all")
+    public ResponseEntity<?> getAllCourses() {
+        log.info("getAllCourse");
+
+        List<Course> allCourse = courseListService.getAllCourses();
+        List<CourseSearchResponseDto> responseDtoList = allCourse.stream()
+                .map(course -> new CourseSearchResponseDto(course.getTitle(), course.getDescription(), course.getCourseId(), course.getThumbnailPath(),  course.getTags(), course.getUser().getUserName()))
+                .collect(Collectors.toList());
+
+        return ResponseEntity.status(HttpStatus.OK).body(new Result(responseDtoList.size(), responseDtoList));
+    }
+
 }
 

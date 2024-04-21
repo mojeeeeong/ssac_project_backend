@@ -86,6 +86,16 @@ public class CourseListService {
 
         return searchResult;
     }
+
+    public List<Course> getAllCourses() {
+        List<Course> allCourses = courseRepository.findAll();
+
+        for (Course course : allCourses) {
+
+        }
+
+        return allCourses;
+    }
 }
 
 
